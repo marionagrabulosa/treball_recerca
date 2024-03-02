@@ -17,6 +17,23 @@
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
 
+    function ajustarCanvas() {
+        // Obtén el canvas i el seu context
+        var canvas = document.getElementById('miCanvas');
+        var ctx = canvas.getContext('2d');
+    
+        // Ajusta les dimensions del canvas a les de la finestra
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    
+    // Ajusta el canvas quan la pàgina s'ha carregat
+    window.onload = ajustarCanvas;
+    
+    // Ajusta el canvas quan la finestra canvia de tamany
+    window.onresize = ajustarCanvas;
+    
+        
     // Funció per demanar la mida del quadrat a l'usuari
     function demanarMidaQuadrat() {
         var mida = prompt("Introdueix la mida del quadrat (en píxels):");
