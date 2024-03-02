@@ -3,28 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dibuixar un Quadrat</title>
-<style>
-    #canvas {
-        border: 1px solid black;
-    }
-</style>
+<title>Treball de recerca</title>
+
 </head>
 <body>
-<canvas id="canvas" width="400" height="400"></canvas>
+<canvas id="miCanvas" style="border:1px solid #000000;">
+    Tu navegador no soporta el elemento canvas.
+</canvas>
 
 <script>
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
-
+    //var canvas = document.getElementById('canvas');
+   // var ctx = canvas.getContext('2d');
+   
+    function dibuixarLinia(ctx, x1, y1, x2, y2) {
+        ctx.beginPath();
+        // Mueve el punto de inicio de la línea a la posición (0, 0)
+        ctx.moveTo(x1, y1);
+        // Define el punto final de la línea en la posición (200, 100)
+        ctx.lineTo(x2, y2);
+        // Dibuja la línea
+        ctx.stroke();
+    }
     function ajustarCanvas() {
         // Obtén el canvas i el seu context
         var canvas = document.getElementById('miCanvas');
         var ctx = canvas.getContext('2d');
     
         // Ajusta les dimensions del canvas a les de la finestra
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth-15;
+        canvas.height = window.innerHeight-15;
+        
+        // calculem el mig del canvas
+    	var centrex=(window.innerWidth-15)/2;
+    	var centrey=(window.innerHeight-15)/2;
+    	// Dibuixem eix vertical
+        dibuixarLinia(ctx,centrex,1,centrex,canvas.height);
+    	// Dibuixem eix horitzontal
+        dibuixarLinia(ctx, 1, centrey, canvas.width, centrey);
+        
+	    // Configura el color i la font del text
+    	ctx.fillStyle = 'black';
+    	ctx.font = '20px Arial';
+
+    	// Dibuixa les dimensions del canvas com a text
+    	var text = 'Tamany: ' + canvas.width + ' x ' + canvas.height;
+    	ctx.fillText(text, 10, 30); 
+    	
+
     }
     
     // Ajusta el canvas quan la pàgina s'ha carregat
@@ -49,22 +74,17 @@
         ctx.closePath();
     }
 
-    function dibuixarLinia(x1, y1, x2, y2) {
-        ctx.beginPath();
-        // Mueve el punto de inicio de la línea a la posición (0, 0)
-        ctx.moveTo(x1, y1);
-        // Define el punto final de la línea en la posición (200, 100)
-        ctx.lineTo(x2, y2);
-        // Dibuja la línea
-        ctx.stroke();
-    }
+
 
     // Demana la mida del quadrat a l'usuari
     // var midaQuadrat = demanarMidaQuadrat();
 
     // Dibuixa el quadrat en la posició (100, 100) amb la mida proporcionada per l'usuari
     // dibuixarQuadrat(100, 100, midaQuadrat);
-    dibuixarLinia(1,1,200,50);
+    // dibuixarLinia(1,1,200,50);
+    
+
+    
 </script>
 </body>
 </html>
