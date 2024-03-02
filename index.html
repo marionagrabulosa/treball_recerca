@@ -32,11 +32,22 @@
         ctx.closePath();
     }
 
+    function dibuixarLinia(x1, y1, x2, y2) {
+        ctx.beginPath();
+        // Mueve el punto de inicio de la línea a la posición (0, 0)
+        ctx.moveTo(x1, y1);
+        // Define el punto final de la línea en la posición (200, 100)
+        ctx.lineTo(x2, y2);
+        // Dibuja la línea
+        ctx.stroke();
+    }
+
     // Demana la mida del quadrat a l'usuari
     var midaQuadrat = demanarMidaQuadrat();
 
     // Dibuixa el quadrat en la posició (100, 100) amb la mida proporcionada per l'usuari
     dibuixarQuadrat(100, 100, midaQuadrat);
+    dibuixarLinia(1,1,200,50);
 </script>
 </body>
 </html>
