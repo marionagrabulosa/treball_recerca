@@ -15,6 +15,7 @@
     //var canvas = document.getElementById('canvas');
    // var ctx = canvas.getContext('2d');
   
+  var dist=50;
            
     function ajustarCanvas() {
         // Obtén el canvas i el seu context
@@ -30,7 +31,7 @@
     	var centrey=(window.innerHeight-15)/2;
 
     	// Dibuixa les línies repetides sense netejar el canvas
-        dibuixarLiniesRepetides(ctx, 50, '808080' , centrex, centrey); // La distància entre línies és de 50 píxels
+        dibuixarLiniesRepetides(ctx, dist, '808080' , centrex, centrey); // La distància entre línies és de 50 píxels
         
     	// Dibuixem eix vertical
         dibuixarLinia(ctx,centrex,1,centrex,canvas.height);
@@ -40,7 +41,7 @@
 	    // Configura el color i la font del text
     	ctx.fillStyle = '000000';
     	ctx.font = '20px Arial';
-    	dibuixarFuncio(ctx, 50, centrex, centrey);
+    	dibuixarFuncio(ctx, dist, centrex, centrey);
     	// Dibuixa les dimensions del canvas com a text
     	var text = 'Tamany: ' + canvas.width + ' x ' + canvas.height;
     	ctx.fillText(text, 10, 30); 
