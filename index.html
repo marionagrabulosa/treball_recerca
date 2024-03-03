@@ -8,22 +8,14 @@
 </head>
 <body>
 <canvas id="miCanvas" style="border:1px solid #000000;">
-    Tu navegador no soporta el elemento canvas.
+   el teu navegador no detecta l'element canvas.
 </canvas>
 
 <script>
     //var canvas = document.getElementById('canvas');
    // var ctx = canvas.getContext('2d');
-   
-    function dibuixarLinia(ctx, x1, y1, x2, y2) {
-        ctx.beginPath();
-        // Mueve el punto de inicio de la línea a la posición (0, 0)
-        ctx.moveTo(x1, y1);
-        // Define el punto final de la línea en la posición (200, 100)
-        ctx.lineTo(x2, y2);
-        // Dibuja la línea
-        ctx.stroke();
-    }
+  
+           
     function ajustarCanvas() {
         // Obtén el canvas i el seu context
         var canvas = document.getElementById('miCanvas');
@@ -36,28 +28,150 @@
         // calculem el mig del canvas
     	var centrex=(window.innerWidth-15)/2;
     	var centrey=(window.innerHeight-15)/2;
+
+    	// Dibuixa les línies repetides sense netejar el canvas
+        dibuixarLiniesRepetides(ctx, 50, '808080' , centrex, centrey); // La distància entre línies és de 50 píxels
+        
     	// Dibuixem eix vertical
         dibuixarLinia(ctx,centrex,1,centrex,canvas.height);
     	// Dibuixem eix horitzontal
         dibuixarLinia(ctx, 1, centrey, canvas.width, centrey);
         
 	    // Configura el color i la font del text
-    	ctx.fillStyle = 'black';
+    	ctx.fillStyle = '000000';
     	ctx.font = '20px Arial';
-
+    	dibuixarFuncio(ctx, 50, centrex, centrey);
     	// Dibuixa les dimensions del canvas com a text
     	var text = 'Tamany: ' + canvas.width + ' x ' + canvas.height;
     	ctx.fillText(text, 10, 30); 
     	
+    }
+
+    function dibuixarLinia(ctx, x1, y1, x2, y2) {
+        ctx.beginPath();
+        // mou el punt d'inici de la línia a la posició (0, 0)
+        ctx.moveTo(x1, y1);
+        // defineix el punt final de la línia a la posició (200, 100)
+        ctx.lineTo(x2, y2);
+        // Dibuixa la línia
+        ctx.stroke();
+    }
+           
+   function dibuixarLiniesRepetides(ctx, distancia, color, centrex, centrey) {
+        var canvasWidth = ctx.canvas.width;
+        var canvasHeight = ctx.canvas.height;
+        // Configura el color i la font del text
+        ctx.fillStyle = '000000';
+        ctx.font = '14px Arial';
+
+        // Configura el color de les línies
+        ctx.strokeStyle = color;
+
+        // Dibuixa les línies horitzontals
+        var y = centrey ;
+        var conty=0;
+        while (y < canvasHeight) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvasWidth, y);
+            ctx.stroke();
+        
+            var text = conty;
+    	    ctx.fillText(text, centrex+2, y+15); 
+
+            y += distancia;
+            conty= conty-1;
+        }
+        
+        // Dibuixa les línies horitzontals
+        var y = centrey ;
+        var conty=0;
+        while (y > 0) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvasWidth, y);
+            ctx.stroke();
+        
+            var text = conty;
+    	    ctx.fillText(text, centrex+2, y+15); 
+
+            y -= distancia;
+            conty= conty+1;
+        }
+
+        // Dibuixa les línies verticals
+        var x = centrex;
+        var contx=0;
+        while (x < canvasWidth) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvasHeight);
+            ctx.stroke();
+        
+            var text = contx;
+    	    ctx.fillText(text, x+2, centrey+15); 
+        
+            x = x + distancia;
+            contx= contx+1;
+        }
+        // Dibuixa les línies verticals
+        var x = centrex;
+        var contx=0;
+        while (x > 0) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvasHeight);
+            ctx.stroke();
+        
+            var text = contx;
+    	    ctx.fillText(text, x+2, centrey+15); 
+
+            x -= distancia;
+            contx= contx-1;
+        }
 
     }
     
+    function dibuixarFuncio(ctx, distancia, centrex, centrey) {
+            
+        // y=x^2    
+        
+        // Configura el color de les línies
+        ctx.strokeStyle = '0000ff';
+        
+       var px=0;
+       var x=0;
+       var py=0;
+       var y=0;
+        var canvasWidth = ctx.canvas.width;
+        var canvasHeight = ctx.canvas.height;
+
+        ctx.beginPath();
+          while (px < canvasWidth) {
+              x=(px-centrex)/distancia;
+              //y=(0.1*x*x*x+2*x*x+5)/(3+x);
+              y=Math.cos(x);
+              y=Math.tan(x);
+              py=-distancia*y+centrey;
+                 
+            if (px==0) {
+                ctx.moveTo(px, py);
+            } else {
+                ctx.lineTo(px, py);
+            }
+                        
+            px=px+1;
+        }
+        ctx.stroke();
+
+    }
+    
+      
     // Ajusta el canvas quan la pàgina s'ha carregat
     window.onload = ajustarCanvas;
     
     // Ajusta el canvas quan la finestra canvia de tamany
     window.onresize = ajustarCanvas;
-    
         
     // Funció per demanar la mida del quadrat a l'usuari
     function demanarMidaQuadrat() {
@@ -77,10 +191,10 @@
 
 
     // Demana la mida del quadrat a l'usuari
-    // var midaQuadrat = demanarMidaQuadrat();
+        // var midaQuadrat = demanarMidaQuadrat();
 
     // Dibuixa el quadrat en la posició (100, 100) amb la mida proporcionada per l'usuari
-    // dibuixarQuadrat(100, 100, midaQuadrat);
+     // dibuixarQuadrat(100, 100, midaQuadrat);
     // dibuixarLinia(1,1,200,50);
     
 
