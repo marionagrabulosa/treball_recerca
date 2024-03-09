@@ -48,6 +48,29 @@
     	
     }
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtenir referència al canvas
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    // Dibuixar el "botó" com un rectangle
+    ctx.fillStyle = "blue";
+    ctx.fillRect(50, 50, 100, 50);
+
+    // Afegir un event listener al canvas per detectar clics
+    canvas.addEventListener("click", function(event) {
+        // Coordenades del clic
+        var x = event.clientX - canvas.getBoundingClientRect().right;
+        var y = event.clientY - canvas.getBoundingClientRect().top;
+
+        // Comprovar si el clic va ser dins del "botó"
+        if (x > 50 && x < 150 && y > 50 && y < 100) {
+            alert("Has fet clic al botó!");
+        }
+    });
+});
+
+	
     function dibuixarLinia(ctx, x1, y1, x2, y2) {
         ctx.beginPath();
         // mou el punt d'inici de la línia a la posició (0, 0)
