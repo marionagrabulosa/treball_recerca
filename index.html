@@ -151,8 +151,9 @@
           while (px < canvasWidth) {
               x=(px-centrex)/distancia;
               //y=(0.1*x*x*x+2*x*x+5)/(3+x);
-              y=Math.cos(x);
-              y=Math.tan(x);
+              //y=Math.cos(x);
+              //y=Math.tan(x);
+		y=x^3+1
               py=-distancia*y+centrey;
                  
             if (px==0) {
