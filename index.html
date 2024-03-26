@@ -16,19 +16,150 @@
    // var ctx = canvas.getContext('2d');
   
   var dist=50;
-           
+  var canvas = document.getElementById('miCanvas');
+  var separacioBoto = 20;
+  var botoy = 20; //separació entre el final superior del canvas i el botó
+  var botocolor = "lightgrey"; //color del botó
+  var botocolortext = "black"; //color lletra botó
+  var bototx = 100; //amplada del botó
+  var bototy = 50; //llargada del botó
+  var boto1x = 20; //separació entre el començament esquerre del canvas i el primer botó
+  var boto2x = boto1x + bototx + separacioBoto; //on comença el botó
+  var boto3x = boto2x + bototx + separacioBoto; //on comença el botó
+  var boto4x = boto3x + bototx + separacioBoto; //on comença el botó
+  var boto5x = boto4x + bototx + separacioBoto; //on comença el botó
+  var boto6x = boto5x + bototx + separacioBoto; //on comença el botó
+  var boto7x = boto6x + bototx + separacioBoto; //on comença el botó
+  var boto8x = boto7x + bototx + separacioBoto; //on comença el botó
+  var boto9x = boto8x + bototx + separacioBoto; //on comença el botó
+  var botoclicat = 3; //saber quin botó s'ha clicat
+  
+         //listener boto1 (zoom+)
+		canvas.addEventListener("click", function(event) {
+			// Coordenades del clic
+			var x = event.clientX - canvas.getBoundingClientRect().left;
+			var y = event.clientY - canvas.getBoundingClientRect().top;
+
+			// Comprovar si el clic va ser dins del botó
+			if (x > boto1x && x < boto1x + bototx && y > botoy && y < botoy + bototy) {
+				dist=dist+1;
+				ajustarCanvas();
+			}
+		});
+		
+		//listener boto2 (zoom-)
+		canvas.addEventListener("click", function(event) {
+			// Coordenades del clic
+			var x = event.clientX - canvas.getBoundingClientRect().left;
+			var y = event.clientY - canvas.getBoundingClientRect().top;
+
+			// Comprovar si el clic va ser dins del botó
+			if (x > boto2x && x < boto2x + bototx && y > botoy && y < botoy + bototy) {
+				dist=dist-1;
+				ajustarCanvas();
+			}
+		});
+		
+		//listener boto3
+		canvas.addEventListener("click", function(event) {
+			// Coordenades del clic
+			var x = event.clientX - canvas.getBoundingClientRect().left;
+			var y = event.clientY - canvas.getBoundingClientRect().top;
+			// Comprovar si el clic va ser dins del botó
+			if (x > boto3x && x < boto3x + bototx && y > botoy && y < botoy + bototy) {
+				botoclicat=3
+				ajustarCanvas();
+				}
+		});
+		//listener boto4
+		canvas.addEventListener("click", function(event) {
+			// Coordenades del clic
+			var x = event.clientX - canvas.getBoundingClientRect().left;
+			var y = event.clientY - canvas.getBoundingClientRect().top;
+
+			// Comprovar si el clic va ser dins del botó
+			if (x > boto4x && x < boto4x + bototx && y > botoy && y < botoy + bototy) {
+				botoclicat=4
+				ajustarCanvas();
+				}
+		});
+	
+	//listener boto5
+		canvas.addEventListener("click", function(event) {
+			// Coordenades del clic
+			var x = event.clientX - canvas.getBoundingClientRect().left;
+			var y = event.clientY - canvas.getBoundingClientRect().top;
+
+			// Comprovar si el clic va ser dins del botó
+			if (x > boto5x && x < boto5x + bototx && y > botoy && y < botoy + bototy) {
+				botoclicat=5
+				ajustarCanvas();
+				}
+		});
+		
+	//listener boto6
+		canvas.addEventListener("click", function(event) {
+			// Coordenades del clic
+			var x = event.clientX - canvas.getBoundingClientRect().left;
+			var y = event.clientY - canvas.getBoundingClientRect().top;
+
+			// Comprovar si el clic va ser dins del botó
+			if (x > boto6x && x < boto6x + bototx && y > botoy && y < botoy + bototy) {
+				botoclicat=6
+				ajustarCanvas();
+				}
+		});
+	
+	//listener boto7
+		canvas.addEventListener("click", function(event) {
+			// Coordenades del clic
+			var x = event.clientX - canvas.getBoundingClientRect().left;
+			var y = event.clientY - canvas.getBoundingClientRect().top;
+
+			// Comprovar si el clic va ser dins del botó
+			if (x > boto7x && x < boto7x + bototx && y > botoy && y < botoy + bototy) {
+				botoclicat=7
+				ajustarCanvas();
+				}
+		});
+		
+	//listener boto8
+		canvas.addEventListener("click", function(event) {
+			// Coordenades del clic
+			var x = event.clientX - canvas.getBoundingClientRect().left;
+			var y = event.clientY - canvas.getBoundingClientRect().top;
+
+			// Comprovar si el clic va ser dins del botó
+			if (x > boto8x && x < boto8x + bototx && y > botoy && y < botoy + bototy) {
+				botoclicat=8
+				ajustarCanvas();
+				}
+		});
+		
+	//listener boto9
+		canvas.addEventListener("click", function(event) {
+			// Coordenades del clic
+			var x = event.clientX - canvas.getBoundingClientRect().left;
+			var y = event.clientY - canvas.getBoundingClientRect().top;
+
+			// Comprovar si el clic va ser dins del botó
+			if (x > boto9x && x < boto9x + bototx && y > botoy && y < botoy + bototy) {
+				botoclicat=9
+				ajustarCanvas();
+				}
+		});
+	
     function ajustarCanvas() {
         // Obtén el canvas i el seu context
-        var canvas = document.getElementById('miCanvas');
         var ctx = canvas.getContext('2d');
     
         // Ajusta les dimensions del canvas a les de la finestra
-        canvas.width = window.innerWidth-15;
-        canvas.height = window.innerHeight-15;
+        canvas.width = window.innerWidth-30;
+        canvas.height = window.innerHeight-30;
         
         // calculem el mig del canvas
-    	var centrex=(window.innerWidth-15)/2;
-    	var centrey=(window.innerHeight-15)/2;
+    	var centrex=(window.innerWidth-30)/2;
+    	var centrey=(window.innerHeight-30)/2;
 
     	// Dibuixa les línies repetides sense netejar el canvas
         dibuixarLiniesRepetides(ctx, dist, '808080' , centrex, centrey); // La distància entre línies és de 50 píxels
@@ -39,37 +170,47 @@
         dibuixarLinia(ctx, 1, centrey, canvas.width, centrey);
         
 	    // Configura el color i la font del text
-    	ctx.fillStyle = '000000';
+    	ctx.fillStyle = 'black';
     	ctx.font = '20px Arial';
     	dibuixarFuncio(ctx, dist, centrex, centrey);
     	// Dibuixa les dimensions del canvas com a text
-    	var text = 'Tamany: ' + canvas.width + ' x ' + canvas.height;
-    	ctx.fillText(text, 10, 30); 
+    	//var text = 'Tamany: ' + canvas.width + ' x ' + canvas.height + ' Dist:' + dist;
+    	//ctx.fillText(text, 10, 30); 
+		
+		// Dibuixar el botó com un rectangle +
+		dibuixarBoto(ctx, botocolor, boto1x, botoy, bototx, bototy, botocolortext, ' Zoom + ');
     	
+		//Dibuixar el botó com un rectangle -
+		dibuixarBoto(ctx, botocolor, boto2x, botoy, bototx, bototy, botocolortext , ' Zoom - ');
+		
+		//dibuixar el botó 3
+		dibuixarBoto(ctx, botocolor, boto3x, botoy, bototx, bototy, botocolortext , ' y=x+1 ');
+		
+		//dibuixar el botó 4
+		dibuixarBoto(ctx, botocolor, boto4x, botoy, bototx, bototy, botocolortext , ' y=x*3 ');
+		
+		//dibuicar el botó 5
+		dibuixarBoto(ctx, botocolor, boto5x, botoy, bototx, bototy, botocolortext , 'y=Sin(x)  ');
+		
+		//dibuicar el botó 6
+		dibuixarBoto(ctx, botocolor, boto6x, botoy, bototx, bototy, botocolortext , ' y=x^2 ');
+		
+		//dibuicar el botó 7
+		dibuixarBoto(ctx, botocolor, boto7x, botoy, bototx, bototy, botocolortext , ' y=x^3 ');
+		
+		//dibuixar el botó 8
+		dibuixarBoto(ctx, botocolor, boto8x, botoy, bototx, bototy, botocolortext , 'y=Tan(x)  ');
+		
+		//dibuixar el botó 9
+		dibuixarBoto(ctx, botocolor, boto9x, botoy, bototx, bototy, botocolortext , '    y=3 ');
     }
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Obtenir referència al canvas
-    var canvas = document.getElementById("canvas");
-    var ctx = canvas.getContext("2d");
-
-    // Dibuixar el "botó" com un rectangle
-    ctx.fillStyle = "blue";
-    ctx.fillRect(50, 50, 100, 50);
-
-    // Afegir un event listener al canvas per detectar clics
-    canvas.addEventListener("click", function(event) {
-        // Coordenades del clic
-        var x = event.clientX - canvas.getBoundingClientRect().right;
-        var y = event.clientY - canvas.getBoundingClientRect().top;
-
-        // Comprovar si el clic va ser dins del "botó"
-        if (x > 50 && x < 150 && y > 50 && y < 100) {
-            alert("Has fet clic al botó!");
-        }
-    });
-});
-
+	function dibuixarBoto(ctx, colorBoto, x, y, tx, ty ,colorText, text) {
+		ctx.fillStyle = colorBoto;
+		ctx.fillRect(x, y, tx, ty);
+		ctx.fillStyle = colorText;
+		ctx.fillText(text, x+15, y+30);
+	}
 	
     function dibuixarLinia(ctx, x1, y1, x2, y2) {
         ctx.beginPath();
@@ -84,6 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
    function dibuixarLiniesRepetides(ctx, distancia, color, centrex, centrey) {
         var canvasWidth = ctx.canvas.width;
         var canvasHeight = ctx.canvas.height;
+		
         // Configura el color i la font del text
         ctx.fillStyle = '000000';
         ctx.font = '14px Arial';
@@ -153,16 +295,16 @@ document.addEventListener("DOMContentLoaded", function() {
             x -= distancia;
             contx= contx-1;
         }
-
-    }
+   }
     
     function dibuixarFuncio(ctx, distancia, centrex, centrey) {
             
         // y=x^2    
         
         // Configura el color de les línies
-        ctx.strokeStyle = '0000ff';
-        
+        ctx.strokeStyle = 'blue';
+        //ctx.atrokeWidth =3;
+		
        var px=0;
        var x=0;
        var py=0;
@@ -176,22 +318,40 @@ document.addEventListener("DOMContentLoaded", function() {
               //y=(0.1*x*x*x+2*x*x+5)/(3+x);
               //y=Math.cos(x);
               //y=Math.tan(x);
-		y=x^2+1;
+			  
+		if  (botoclicat == 3) {
+			y=x+1;}
+			
+		if  (botoclicat == 4) {
+			y=x*3;}
+			
+		if  (botoclicat == 5) {
+			y=Math.sin(x);}
+			
+		if  (botoclicat == 6) {
+			y=x*x;}
+			
+		if  (botoclicat == 7) {
+			y=x*x*x;}	
+			
+		if (botoclicat == 8) {
+			y=Math.tan(x);}
+			
+		if (botoclicat == 9) {
+			y=3;}
+			
               py=-distancia*y+centrey;
                  
             if (px==0) {
                 ctx.moveTo(px, py);
             } else {
                 ctx.lineTo(px, py);
-            }
-                        
+            }                    
             px=px+1;
         }
         ctx.stroke();
-
     }
     
-      
     // Ajusta el canvas quan la pàgina s'ha carregat
     window.onload = ajustarCanvas;
     
@@ -213,16 +373,12 @@ document.addEventListener("DOMContentLoaded", function() {
         ctx.closePath();
     }
 
-
-
     // Demana la mida del quadrat a l'usuari
         // var midaQuadrat = demanarMidaQuadrat();
 
     // Dibuixa el quadrat en la posició (100, 100) amb la mida proporcionada per l'usuari
      // dibuixarQuadrat(100, 100, midaQuadrat);
     // dibuixarLinia(1,1,200,50);
-    
-
     
 </script>
 </body>
